@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Cifrado</h1>
   </div>
 </template>
 
