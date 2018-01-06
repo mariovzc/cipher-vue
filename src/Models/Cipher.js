@@ -16,6 +16,13 @@ export class Cipher {
     })
     return cipheWord
   }
+  decodeWord (word, b) {
+    let decipherWord = ''
+    word.split('').forEach((element) => {
+      decipherWord += ((element === '') ? ' ' : this.decode(element, b))
+    })
+    return decipherWord
+  }
 }
 
 // PRIVATE METHOD

@@ -14,4 +14,8 @@ describe('class Cipher', () => {
     let encode = cipher.encodeWord('ABCD', 2)
     expect(encode).to.equal('CDEF')
   })
+  it('should decode a word', () => {
+    let decode = cipher.decodeWord('CDEF', 2)
+    expect(decode).to.equal('ABCD')
+  })
 })
