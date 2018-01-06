@@ -9,6 +9,13 @@ export class Cipher {
     const m = _mod(letters.indexOf(c) - b)
     return m === -1 ? letters[letters.length - 1] : letters[m]
   }
+  encodeWord (word, b) {
+    let cipheWord = ''
+    word.split('').forEach((element) => {
+      cipheWord += ((element === '') ? ' ' : this.encode(element, b))
+    })
+    return cipheWord
+  }
 }
 
 // PRIVATE METHOD

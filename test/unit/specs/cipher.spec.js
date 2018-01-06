@@ -10,4 +10,8 @@ describe('class Cipher', () => {
     let decode = cipher.decode('D', 2) // c, b
     expect(decode).to.equal('B')
   })
+  it('should encode a word', () => {
+    let encode = cipher.encodeWord('ABCD', 2)
+    expect(encode).to.equal('CDEF')
+  })
 })
