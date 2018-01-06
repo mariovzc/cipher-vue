@@ -15,7 +15,8 @@
   },
   "dependencies": {
     "avoriaz": "^6.3.0",
-    "vue": "^2.5.2"
+    "vue": "^2.5.2",
+    "vuetify": "^0.17.6"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
