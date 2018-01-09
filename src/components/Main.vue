@@ -10,6 +10,7 @@
               v-model="word"
               required
               :rules="wordRules"
+              @change="upperCase"
             ></v-text-field>
             <v-slider 
               :label="slider.label" 
@@ -58,6 +59,7 @@
 </template>
 
 <script>
+import {Cipher} from '@/Models/Cipher'
 export default {
   name: 'Main',
   data () {
@@ -73,13 +75,42 @@ export default {
       slider: {
         label: 'Codigó:', color: 'orange darken-3'
       },
-      snackbar: true
+      snackbar: false,
+      results: []
     }
   },
   methods: {
     convert () {
-      console.log('ok')
+      if (!/^[a-zA-Z]*$/g.test(this.word) || this.word === '') {
+        this.snackbar = true
+        return
+      }
+      const cipher = new Cipher()
+      switch (this.type) {
+        case 'Cifrar':
+          this.results.push({
+            old: this.word,
+            new: cipher.encodeWord(this.word, this.code),
+            type: this.type
+          })
+          break
+        case 'Descifrar':
+          this.results.push({
+            old: this.word,
+            new: cipher.decodeWord(this.word, this.code),
+            type: this.type
+          })
+          break
+      }
+    },
+    upperCase () {
+      this.word = this.word.toUpperCase()
     }
   }
 }
 </script>
+<style scoped>
+  input[type="text"]{
+    text-transform: uppercase;
+  }
+</style>
