@@ -43,8 +43,8 @@
               >
                 {{type}}
               </v-btn>
-            </v-flex>
               <TableComponent :items="items"></TableComponent>
+            </v-flex>
           </v-layout>
         </v-container>
       </v-content>

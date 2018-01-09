@@ -6,9 +6,9 @@
       class="elevation-1"
     >
     <template slot="items" slot-scope="props">
-      <td>{{ props.item.old }}</td>
-      <td>{{ props.item.new }}</td>
-      <td>{{ props.item.type }}</td>
+      <td class="text-xs-right">{{ props.item.old }}</td>
+      <td class="text-xs-right">{{ props.item.new }}</td>
+      <td class="text-xs-right">{{ props.item.type }}</td>
     </template>
     <template slot="no-data">
       <v-alert :value="true" color="error" icon="warning">
