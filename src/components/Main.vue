@@ -1,50 +1,53 @@
 <template>
   <div>
     <v-app>
-      <v-container grid-list-md text-xs-center>
-        <h1>Cifrado</h1>
-        <v-layout row wrap>
-          <v-flex xs6 offset-xs3>
-            <v-text-field
-              label="Palabra"
-              v-model="word"
-              required
-              :rules="wordRules"
-              @change="upperCase"
-            ></v-text-field>
-            <v-slider 
-              :label="slider.label" 
-              min="0" max="26" 
-              v-model="code" 
-              :color="slider.color"
-              thumb-label
-            ></v-slider>
-            <v-radio-group 
-              v-model="type" 
-              :mandatory="false" 
-              row
-            >
-              <v-radio 
-                label="Cifrar" 
-                value="Cifrar" 
+      <v-content>
+        <v-container grid-list-md text-xs-center>
+          <h1>Cifrado</h1>
+          <v-layout row wrap>
+            <v-flex xs6 offset-xs3>
+              <v-text-field
+                label="Palabra"
+                v-model="word"
+                required
+                :rules="wordRules"
+                @change="upperCase"
+              ></v-text-field>
+              <v-slider 
+                :label="slider.label" 
+                min="0" max="26" 
+                v-model="code" 
+                :color="slider.color"
+                thumb-label
+              ></v-slider>
+              <v-radio-group 
+                v-model="type" 
+                :mandatory="false" 
+                row
+              >
+                <v-radio 
+                  label="Cifrar" 
+                  value="Cifrar" 
+                  color="primary"
+                ></v-radio>
+                <v-radio 
+                  label="Descifrar" 
+                  value="Descifrar" 
+                  color="success"
+                ></v-radio>
+              </v-radio-group>
+              <v-btn  
+                v-if="type" 
                 color="primary"
-              ></v-radio>
-              <v-radio 
-                label="Descifrar" 
-                value="Descifrar" 
-                color="success"
-              ></v-radio>
-            </v-radio-group>
-            <v-btn  
-              v-if="type" 
-              color="primary"
-              @click="convert"
-            >
-              {{type}}
-            </v-btn>
-          </v-flex>
-        </v-layout>
-      </v-container>
+                @click="convert"
+              >
+                {{type}}
+              </v-btn>
+            </v-flex>
+              <TableComponent :items="items"></TableComponent>
+          </v-layout>
+        </v-container>
+      </v-content>
     </v-app>
     <v-snackbar
       :right="true"
@@ -60,6 +63,7 @@
 
 <script>
 import {Cipher} from '@/Models/Cipher'
+import TableComponent from '@/components/Table'
 export default {
   name: 'Main',
   data () {
@@ -76,8 +80,11 @@ export default {
         label: 'Codigó:', color: 'orange darken-3'
       },
       snackbar: false,
-      results: []
+      items: []
     }
+  },
+  components: {
+    TableComponent
   },
   methods: {
     convert () {
@@ -88,14 +95,14 @@ export default {
       const cipher = new Cipher()
       switch (this.type) {
         case 'Cifrar':
-          this.results.push({
+          this.items.push({
             old: this.word,
             new: cipher.encodeWord(this.word, this.code),
             type: this.type
           })
           break
         case 'Descifrar':
-          this.results.push({
+          this.items.push({
             old: this.word,
             new: cipher.decodeWord(this.word, this.code),
             type: this.type
