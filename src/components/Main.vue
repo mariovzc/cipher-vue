@@ -37,9 +37,9 @@
                 ></v-radio>
               </v-radio-group>
               <v-btn  
-                v-if="type" 
                 color="primary"
                 @click="convert"
+                id="btn"
               >
                 {{type}}
               </v-btn>
@@ -75,7 +75,7 @@ export default {
         (v) => /^[a-zA-Z\s]*$/.test(v) || 'Solo pueden ser letras'
       ],
       code: 0,
-      type: '',
+      type: 'Cifrar',
       slider: {
         label: 'Codigó:', color: 'orange darken-3'
       },
