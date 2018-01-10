@@ -18,7 +18,7 @@ module.exports = {
       .setValue('input[name=words]', 'ABCD')
       .setValue('div[name=code]', 2)
       .click('#btn')
-      .pause(3000)
+      .pause(1000)
       .assert.containsText('table', 'ABCD')
       .end()
   }
