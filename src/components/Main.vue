@@ -12,6 +12,7 @@
                 required
                 :rules="wordRules"
                 @change="upperCase"
+                name="words"
               ></v-text-field>
               <v-slider 
                 :label="slider.label" 
@@ -19,6 +20,7 @@
                 v-model="code" 
                 :color="slider.color"
                 thumb-label
+                name="code"
               ></v-slider>
               <v-radio-group 
                 v-model="type" 
